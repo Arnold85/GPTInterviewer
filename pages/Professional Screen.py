@@ -1,5 +1,4 @@
 import streamlit as st
-from streamlit_lottie import st_lottie
 from typing import Literal
 from dataclasses import dataclass
 import json
@@ -20,16 +19,6 @@ from audio_recorder_streamlit import audio_recorder
 from aws.synthesize_speech import synthesize_speech
 from IPython.display import Audio
 
-
-def load_lottiefile(filepath: str):
-    with open(filepath, "r") as f:
-        return json.load(f)
-st_lottie(load_lottiefile("images/welcome.json"), speed=1, reverse=False, loop=True, quality="high", height=300)
-
-#st.markdown("""solutions to potential errors:""")
-with st.expander("""Why did I encounter errors when I tried to talk to the AI Interviewer?"""):
-    st.write("""
-    This is because the app failed to record. Make sure that your microphone is connected and that you have given permission to the browser to access your microphone.""")
 
 jd = st.text_area("Please enter the job description here (If you don't have one, enter keywords, such as PostgreSQL or Python instead): ")
 auto_play = st.checkbox("Let AI interviewer speak! (Please don't switch during the interview)")
@@ -119,7 +108,7 @@ def initialize_session_state_jd():
             memory=st.session_state.jd_memory,
         )
 
-def answer_call_back():
+""" def answer_call_back():
     with get_openai_callback() as cb:
         # user input
         human_answer = st.session_state.answer
@@ -149,7 +138,7 @@ def answer_call_back():
             Message("ai", llm_answer)
         )
         st.session_state.token_count += cb.total_tokens
-        return audio_widget
+        return audio_widget """
 
 if jd:
     # initialize session states
@@ -174,25 +163,25 @@ if jd:
         st.stop()
     else:
         with answer_placeholder:
-            voice: bool = st.checkbox("I would like to speak with AI Interviewer")
+            """ voice: bool = st.checkbox("I would like to speak with AI Interviewer")
             if voice:
                 answer = audio_recorder(pause_threshold = 2.5, sample_rate = 44100)
                 #st.warning("An UnboundLocalError will occur if the microphone fails to record.")
-            else:
-                answer = st.chat_input("Your answer")
+            else: """
+            answer = st.chat_input("Your answer")
             if answer:
                 st.session_state['answer'] = answer
-                audio = answer_call_back()
+                #audio = answer_call_back()
         with chat_placeholder:
             for answer in st.session_state.jd_history:
                 if answer.origin == 'ai':
-                    if auto_play and audio:
+                    """ if auto_play and audio:
                         with st.chat_message("assistant"):
                             st.write(answer.message)
                             st.write(audio)
-                    else:
-                        with st.chat_message("assistant"):
-                            st.write(answer.message)
+                    else: """
+                    with st.chat_message("assistant"):
+                        st.write(answer.message)
                 else:
                     with st.chat_message("user"):
                         st.write(answer.message)

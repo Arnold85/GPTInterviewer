@@ -8,7 +8,6 @@ nltk
 #azure-cognitiveservices-speech
 audio_recorder_streamlit
 streamlit-option-menu
-streamlit-lottie
 faiss-cpu
 boto3
 Ipython
