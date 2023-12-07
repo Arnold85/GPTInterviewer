@@ -14,10 +14,10 @@ from langchain.vectorstores import FAISS
 import nltk
 from prompts.prompts import templates
 # Audio
-from speech_recognition.openai_whisper import save_wav_file, transcribe
+""" from speech_recognition.openai_whisper import save_wav_file, transcribe
 from audio_recorder_streamlit import audio_recorder
 from aws.synthesize_speech import synthesize_speech
-from IPython.display import Audio
+from IPython.display import Audio """
 
 
 jd = st.text_area("Please enter the job description here (If you don't have one, enter keywords, such as PostgreSQL or Python instead): ")
