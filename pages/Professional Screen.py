@@ -38,7 +38,7 @@ def save_vector(text):
     text_splitter = NLTKTextSplitter()
     texts = text_splitter.split_text(text)
      # Create emebeddings
-    embeddings = OpenAIEmbeddings(api_key="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")
+    embeddings = OpenAIEmbeddings(api_key="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")
     docsearch = FAISS.from_texts(texts, embeddings)
     return docsearch
 
